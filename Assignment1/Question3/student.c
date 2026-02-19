@@ -26,8 +26,25 @@
 //Output parameter (returnSize): set *returnSize to the number of digits in the returned array.
 
 int* plusOne(int* digits, int digitsSize, int* returnSize) {
-    // TODO: implement
-
-    
+    // Allocate space for the result (at most digitsSize+1)
+    int* result = (int*)malloc(sizeof(int) * (digitsSize + 1));
+    int carry = 1;
+    for (int i = digitsSize - 1; i >= 0; --i) {
+        int sum = digits[i] + carry;
+        result[i + 1] = sum % 10;
+        carry = sum / 10;
+    }
+    if (carry) {
+        result[0] = 1;
+        *returnSize = digitsSize + 1;
+        return result;
+    } else {
+        // Shift result to remove leading zero
+        for (int i = 0; i < digitsSize; ++i) {
+            result[i] = result[i + 1];
+        }
+        *returnSize = digitsSize;
+        return result;
+    }
 }
 
