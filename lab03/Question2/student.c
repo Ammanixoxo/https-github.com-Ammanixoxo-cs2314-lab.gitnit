@@ -13,5 +13,18 @@
 #include "student.h"
 
 struct ListNode* swapPairs(struct ListNode* head) {
-      // TODO: implement
+      if (!head || !head->next) return head;
+      struct ListNode *new_head = head->next;
+      struct ListNode *prev = NULL;
+      struct ListNode *curr = head;
+      while (curr && curr->next) {
+            struct ListNode *next = curr->next;
+            struct ListNode *next_pair = next->next;
+            next->next = curr;
+            if (prev) prev->next = next;
+            curr->next = next_pair;
+            prev = curr;
+            curr = next_pair;
+      }
+      return new_head;
 }
