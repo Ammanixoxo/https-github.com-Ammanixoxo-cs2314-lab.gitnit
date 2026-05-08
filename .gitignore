@@ -14,3 +14,5 @@ Thumbs.db
 *.exe
 main
 lab00_demo
+# local portable toolchain
+mingw64/
